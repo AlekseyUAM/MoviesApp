@@ -23,9 +23,15 @@ public class MovieDetailViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Trailer>> trailers = new MutableLiveData<>();
     private final MutableLiveData<List<Review>> reviews = new MutableLiveData<>();
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final MoviesDao moviesDao;
 
     public MovieDetailViewModel(@NonNull Application application) {
         super(application);
+        moviesDao = MovieDatabase.getInstance(application).moviesDao();
+    }
+
+    public LiveData<Movie> getFavoriteMovie(int movieId){
+        return moviesDao.getFavoriteMovie(movieId);
     }
 
     public LiveData<List<Trailer>> getTrailers() {
@@ -75,6 +81,20 @@ public class MovieDetailViewModel extends AndroidViewModel {
                         Log.d(TAG, throwable.toString());
                     }
                 });
+        compositeDisposable.add(disposable);
+    }
+
+    public void insertMovie(Movie movie){
+        Disposable disposable = moviesDao.insertMovie(movie)
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+        compositeDisposable.add(disposable);
+    }
+
+    public void removeMovie(int movieId){
+        Disposable disposable = moviesDao.removeMovie(movieId)
+                .subscribeOn(Schedulers.io())
+                .subscribe();
         compositeDisposable.add(disposable);
     }
 

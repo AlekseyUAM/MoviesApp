@@ -4,29 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="8dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="4dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:id="@+id/linearLayoutReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:alpha="0.8"
         android:orientation="vertical"
-        tools:background="@color/purple_500"
-        android:padding="8dp">
+        android:padding="8dp"
+        tools:background="@color/purple_500">
 
         <TextView
             android:id="@+id/textViewReviewAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:textColor="@color/white"
+            android:textStyle="bold"
             tools:text="Author" />
 
         <TextView
             android:id="@+id/textViewReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:textColor="@color/white"
             tools:text="Comment" />
 
